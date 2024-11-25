@@ -40,14 +40,14 @@ const CustomSliderDisplay = (props) => {
   };
 
   useEffect(() => {
-    validate(val);
+    const initialVal = val || min;
     if (comments && Array.isArray(comments)) {
       const comment = comments.find(({ range }) =>
-        range.includes(parseInt(val, 10))
+        range.includes(parseInt(initialVal, 10))
       );
       setDynamicComment(comment?.text || "");
     }
-  }, [val, comments]);
+  }, [val, comments, min]);
 
   return (
     <div
@@ -83,7 +83,7 @@ const CustomSliderDisplay = (props) => {
           }}
           className={css`
             width: 100%;
-            margin-bottom: 10px;
+            margin-bottom: 50px;
           `}
         />
         <span
@@ -92,11 +92,11 @@ const CustomSliderDisplay = (props) => {
             top: -40px; /* Adjusted to create more space */
             left: ${((val - min) / (max - min)) * 100}%;
             transform: translateX(-50%);
-            background: ${theme.buttonsBgColor};
+            background: ${"#009ACD"};
             color: ${theme.buttonsFontColor};
             padding: 6px 10px; /* Increased padding for better visibility */
             border-radius: 4px;
-            font-size: 14px;
+            font-size: 15px;
             white-space: nowrap; /* Prevents text wrapping */
           `}
         >
@@ -106,7 +106,7 @@ const CustomSliderDisplay = (props) => {
       <div
         className={css`
           font-size: 14px;
-          color: ${theme.answersColor};
+          color: ${"#020202"};
         `}
       >
         {dynamicComment}
