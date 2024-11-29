@@ -8,22 +8,22 @@ import "./styles.css";
 import "./custom-slider-block";
 
 registerCoreBlocks();
-
-type ChartData = {
-  category: string;
-  value: number;
-}[];
-
 const App = () => {
-  const [chartData, setChartData] = useState<ChartData | null>(null);
+  const [chartData, setChartData] = useState(null);
 
   function saveToFile(jsonData, fileName, fileType) {
     const blob = new Blob([jsonData], { type: fileType });
     saveAs(blob, fileName);
   }
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+    }
+  };
+
   return (
-    <div style={{ width: "100%", height: "100vh" }}>
+    <div style={{ width: "100%", height: "100vh" }} onKeyDown={handleKeyDown}>
       {chartData ? (
         <RadarChart data={chartData} />
       ) : (
@@ -61,6 +61,10 @@ const App = () => {
                   title: "hypothesize",
                   comments: [
                     {
+                      range: [0],
+                      // text: "No experience.",
+                    },
+                    {
                       range: [1, 2],
                       text: "Ideas are vague or not defined.",
                     },
@@ -91,6 +95,10 @@ const App = () => {
                     "Rate your team's ability to synthesize the results of Continuous Exploration activities into a well-crafted, prioritized ART Backlog.",
                   title: "Collaborate & Research",
                   comments: [
+                    {
+                      range: [0],
+                      // text: "No experience.",
+                    },
                     {
                       range: [1, 2],
                       text: "Product Management roles are undefined or ignored.",
@@ -123,6 +131,10 @@ const App = () => {
                   title: "Architect",
                   comments: [
                     {
+                      range: [0],
+                      // text: "No experience.",
+                    },
+                    {
                       range: [1, 2],
                       text: "Architecture is monolithic, fragile, and difficult to change with complex dependencies.",
                     },
@@ -153,6 +165,10 @@ const App = () => {
                     "Rate your team's effectiveness at architecting for continuous delivery.",
                   title: "Synthesize",
                   comments: [
+                    {
+                      range: [0],
+                      // text: "No experience.",
+                    },
                     {
                       range: [1, 2],
                       text: "The ART Backlog does not exist or is not shared.",
@@ -193,6 +209,10 @@ const App = () => {
                   title: "Develop",
                   comments: [
                     {
+                      range: [0],
+                      // text: "No experience.",
+                    },
+                    {
                       range: [1, 2],
                       text: "The Team Backlog is either non-existent or not used for daily work.",
                     },
@@ -223,6 +243,10 @@ const App = () => {
                     "Rate your team's effectiveness at building and integrating continuously.",
                   title: "Build",
                   comments: [
+                    {
+                      range: [0],
+                      // text: "No experience.",
+                    },
                     {
                       range: [1, 2],
                       text: "Builds run less than once per iteration and/or are fully manual.",
@@ -255,6 +279,10 @@ const App = () => {
                   title: "Test End-to-End",
                   comments: [
                     {
+                      range: [0],
+                      // text: "No experience.",
+                    },
+                    {
                       range: [1, 2],
                       text: "Testing is manual in non-production-like environments and occurs in large batches during a scheduled phase.",
                     },
@@ -285,6 +313,10 @@ const App = () => {
                     "Rate your team's ability to stage Features in full production-like (non-test) environments for final validation prior to production deployment.",
                   title: "Stage",
                   comments: [
+                    {
+                      range: [0],
+                      // text: "No experience.",
+                    },
                     {
                       range: [1, 2],
                       text: "No staging environment exists or a test environment is used for staging.",
@@ -325,6 +357,10 @@ const App = () => {
                   title: "Deploy",
                   comments: [
                     {
+                      range: [0],
+                      // text: "No experience.",
+                    },
+                    {
                       range: [1, 2],
                       text: "Features are deployed to production every 3+ months; deployments are manual and painful; 'deployed' means 'released'.",
                     },
@@ -355,6 +391,10 @@ const App = () => {
                     "Rate your team's ability to accurately determine deployment success or failure and ability to roll back or fix forward as appropriate to correct deployment issues.",
                   title: "Verify",
                   comments: [
+                    {
+                      range: [0],
+                      // text: "No experience.",
+                    },
                     {
                       range: [1, 2],
                       text: "Deployments are not verified in production before being released to end users.",
@@ -387,6 +427,10 @@ const App = () => {
                   title: "Monitor",
                   comments: [
                     {
+                      range: [0],
+                      // text: "No experience.",
+                    },
+                    {
                       range: [1, 2],
                       text: "Only infrastructure monitoring exists; no feature-level production monitoring.",
                     },
@@ -417,6 +461,10 @@ const App = () => {
                     "Rate your team's effectiveness at proactively detecting high severity production issues, identifying root causes using monitoring systems, and quickly resolving issues by building, testing, and deploying fixes through the pipeline (versus applying changes directly in production).",
                   title: "Respond",
                   comments: [
+                    {
+                      range: [0],
+                      // text: "No experience.",
+                    },
                     {
                       range: [1, 2],
                       text: "Customers find issues before we do; resolving high-priority issues is time-consuming and reactive; Customers have low confidence in our recovery ability.",
@@ -457,6 +505,10 @@ const App = () => {
                   title: "Release",
                   comments: [
                     {
+                      range: [0],
+                      // text: "No experience.",
+                    },
+                    {
                       range: [1, 2],
                       text: "Releases are tightly coupled to deployments; Customers are highly dissatisfied with release frequency.",
                     },
@@ -487,6 +539,10 @@ const App = () => {
                     "Rate your team's effectiveness at maintaining stable Solutions that avoid unplanned down time and security breaches.",
                   title: "Stabilize",
                   comments: [
+                    {
+                      range: [0],
+                      // text: "No experience.",
+                    },
                     {
                       range: [1, 2],
                       text: "We experience frequent unplanned outages and/or security breaches with long recovery times.",
@@ -519,6 +575,10 @@ const App = () => {
                   title: "Measure",
                   comments: [
                     {
+                      range: [0],
+                      // text: "No experience.",
+                    },
+                    {
                       range: [1, 2],
                       text: "We don’t define or measure the value of Features.",
                     },
@@ -550,6 +610,10 @@ const App = () => {
                   title: "Learn",
                   comments: [
                     {
+                      range: [0],
+                      // text: "No experience.",
+                    },
+                    {
                       range: [1, 2],
                       text: "Features are never evaluated post-release.",
                     },
@@ -571,6 +635,52 @@ const App = () => {
                     },
                   ],
                 },
+              },
+              {
+                name: "group",
+                id: "hfy72oa",
+                attributes: {
+                  label: "User Information",
+                  description: "Please fill in your details.",
+                },
+                innerBlocks: [
+                  {
+                    name: "short-text",
+                    id: "82pge2m",
+                    attributes: {
+                      label: "Full Name",
+                      placeholder: "John Doe",
+                      required: true,
+                    },
+                  },
+                  {
+                    name: "email",
+                    id: "zp2j6zn",
+                    attributes: {
+                      label: "Email",
+                      placeholder: "nom@entreprise.com",
+                      required: true,
+                    },
+                  },
+                  {
+                    name: "number",
+                    id: "bsufk1p",
+                    attributes: {
+                      label: "Phone number",
+                      placeholder: "+337XXXXXXXX",
+                      required: true,
+                    },
+                  },
+                  {
+                    name: "short-text",
+                    id: "hzofhnd",
+                    attributes: {
+                      label: "Company Name",
+                      placeholder: "ex: Amazon",
+                      required: false,
+                    },
+                  },
+                ],
               },
             ],
             settings: {
@@ -607,15 +717,36 @@ const App = () => {
               buiwzjz: "Learn",
             };
 
-            const transformedData = Object.keys(data.answers).map((key) => ({
-              category: questionMap[key] || key,
-              value: data.answers[key].value || 0,
-            }));
+            const userAnswers = {
+              "82pge2m": "Full Name",
+              zp2j6zn: "Email",
+              bsufk1p: "Phone number",
+              hzofhnd: "Company Name",
+            };
 
-            setChartData(transformedData);
+            const mainQuestions = [];
+            const userInfo = {};
 
-            const jsonData = JSON.stringify(transformedData, null, 2);
-            saveToFile(jsonData, "form-data.json", "application/json");
+            Object.keys(data.answers).forEach((key) => {
+              if (questionMap[key]) {
+                // Questions principales
+                mainQuestions.push({
+                  category: questionMap[key],
+                  value: data.answers[key].value || 0,
+                });
+              } else {
+                // Informations utilisateur
+                userInfo[key] = data.answers[key].value || data.answers[key];
+              }
+            });
+
+            setChartData(mainQuestions);
+
+            const jsonDataMain = JSON.stringify(mainQuestions, null, 2);
+            const jsonDataUserInfo = JSON.stringify(userInfo, null, 2);
+
+            saveToFile(jsonDataMain, "form-main-data.json", "application/json");
+            saveToFile(jsonDataUserInfo, "user-info.json", "application/json");
 
             setTimeout(() => {
               setIsSubmitting(false);

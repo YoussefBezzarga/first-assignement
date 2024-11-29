@@ -24,7 +24,7 @@ const RadarChart = ({ data }) => {
     labels: data.map((item) => item.category), // Catégories pour chaque axe
     datasets: [
       {
-        label: "Radar Chart",
+        label: "Auto Évalutation X-SQUAD",
         data: data.map((item) => item.value), // Valeurs pour chaque catégorie
         backgroundColor: "rgba(255, 165, 0, 0.3)", // Couleur orange clair
         borderColor: "rgba(255, 140, 0, 1)", // Couleur orange plus foncé

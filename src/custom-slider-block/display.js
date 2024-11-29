@@ -1,16 +1,5 @@
-/**
- * QuillForms Dependencies
- */
 import { useTheme, useMessages } from "@quillforms/renderer-core";
-
-/**
- * React Dependencies
- */
 import { useState, useEffect } from "react";
-
-/**
- * External Dependencies
- */
 import { css } from "emotion";
 
 const CustomSliderDisplay = (props) => {
@@ -30,7 +19,10 @@ const CustomSliderDisplay = (props) => {
   const theme = useTheme();
 
   const validate = (value) => {
-    if (required && (value === null || value === undefined)) {
+    if (value === 0) {
+      setIsValid(false);
+      setValidationErr(null);
+    } else if (required && (value === null || value === undefined)) {
       setIsValid(false);
       setValidationErr(messages["label.errorAlert.required"]);
     } else {
@@ -40,6 +32,8 @@ const CustomSliderDisplay = (props) => {
   };
 
   useEffect(() => {
+    validate(val || min);
+
     const initialVal = val || min;
     if (comments && Array.isArray(comments)) {
       const comment = comments.find(({ range }) =>
@@ -78,8 +72,10 @@ const CustomSliderDisplay = (props) => {
           step={step}
           value={val || min}
           onChange={(e) => {
-            setVal(e.target.value);
+            const newValue = parseInt(e.target.value, 10);
+            setVal(newValue);
             setIsAnswered(true);
+            validate(newValue);
           }}
           className={css`
             width: 100%;
@@ -89,15 +85,15 @@ const CustomSliderDisplay = (props) => {
         <span
           className={css`
             position: absolute;
-            top: -40px; /* Adjusted to create more space */
+            top: -40px;
             left: ${((val - min) / (max - min)) * 100}%;
             transform: translateX(-50%);
             background: ${"#009ACD"};
             color: ${theme.buttonsFontColor};
-            padding: 6px 10px; /* Increased padding for better visibility */
+            padding: 6px 10px;
             border-radius: 4px;
             font-size: 15px;
-            white-space: nowrap; /* Prevents text wrapping */
+            white-space: nowrap;
           `}
         >
           {val || min}
@@ -111,6 +107,17 @@ const CustomSliderDisplay = (props) => {
       >
         {dynamicComment}
       </div>
+      {setValidationErr && (
+        <div
+          className={css`
+            margin-top: 10px;
+            color: red;
+            font-size: 14px;
+          `}
+        >
+          {setValidationErr}
+        </div>
+      )}
     </div>
   );
 };
