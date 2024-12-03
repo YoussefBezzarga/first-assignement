@@ -28,18 +28,15 @@ const App = () => {
     if (answers) {
       const sliderBlockKeys = Object.keys(answers).filter(
         (key) =>
-          answers[key].value !== null &&
-          typeof answers[key].value === "number" &&
-          answers[key].value > 0
+          answers[key].value !== null && typeof answers[key].value === "number" && answers[key].value > 0
       );
       if (sliderBlockKeys.length > 0) {
-        setButtonColor("#2B35EE");
+        setButtonColor("#007BFF");
       } else {
         setButtonColor("#ccc");
       }
     }
   }, [answers]);
-
   return (
     <div style={{ width: "100%", height: "100vh" }}>
       {chartData ? (
