@@ -46,7 +46,7 @@ const CustomSliderDisplay = (props) => {
   return (
     <div
       className={css`
-        padding: 20px;
+        padding: 10px;
       `}
     >
       <label
@@ -79,7 +79,7 @@ const CustomSliderDisplay = (props) => {
           }}
           className={css`
             width: 100%;
-            margin-bottom: 50px;
+            margin-bottom: 1%;
           `}
         />
         <span
@@ -99,13 +99,20 @@ const CustomSliderDisplay = (props) => {
           {val || min}
         </span>
       </div>
+      {/* Déplacez les commentaires ici */}
       <div
         className={css`
+          margin-top: 20px;
           font-size: 14px;
           color: ${"#020202"};
+          text-align: center;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         `}
       >
-        {dynamicComment}
+        {dynamicComment || " "} {}
       </div>
       {setValidationErr && (
         <div

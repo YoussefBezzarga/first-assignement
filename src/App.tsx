@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { Form } from "@quillforms/renderer-core";
+import {
+  Form,
+  useCurrentBlock,
+  useFormAnswers,
+} from "@quillforms/renderer-core";
 import "@quillforms/renderer-core/build-style/style.css";
 import { registerCoreBlocks } from "@quillforms/react-renderer-utils";
 import { saveAs } from "file-saver";
@@ -10,20 +14,34 @@ import "./custom-slider-block";
 registerCoreBlocks();
 const App = () => {
   const [chartData, setChartData] = useState(null);
+  const [buttonColor, setButtonColor] = useState("#ccc");
+
+  const currentBlock = useCurrentBlock();
+  const answers = useFormAnswers();
 
   function saveToFile(jsonData, fileName, fileType) {
     const blob = new Blob([jsonData], { type: fileType });
     saveAs(blob, fileName);
   }
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
+  React.useEffect(() => {
+    if (answers) {
+      const sliderBlockKeys = Object.keys(answers).filter(
+        (key) =>
+          answers[key].value !== null &&
+          typeof answers[key].value === "number" &&
+          answers[key].value > 0
+      );
+      if (sliderBlockKeys.length > 0) {
+        setButtonColor("#2B35EE");
+      } else {
+        setButtonColor("#ccc");
+      }
     }
-  };
+  }, [answers]);
 
   return (
-    <div style={{ width: "100%", height: "100vh" }} onKeyDown={handleKeyDown}>
+    <div style={{ width: "100%", height: "100vh" }}>
       {chartData ? (
         <RadarChart data={chartData} />
       ) : (
@@ -50,6 +68,11 @@ const App = () => {
                 attributes: {
                   title: "section1",
                   label: "Continuous Exploration",
+                  attachment: {
+                    type: "image",
+                    url: "https://scaledagileframework.com/wp-content/uploads/2023/01/DevSecOps_Keystone_CE.svg",
+                  },
+                  attachmentMaxWidth: "400px",
                 },
               },
               {
@@ -62,7 +85,7 @@ const App = () => {
                   comments: [
                     {
                       range: [0],
-                      // text: "No experience.",
+                      // text: "Select a value beetween 1 & 10.",
                     },
                     {
                       range: [1, 2],
@@ -198,6 +221,11 @@ const App = () => {
                 attributes: {
                   title: "section2",
                   label: "Continuous Integration",
+                  attachment: {
+                    type: "image",
+                    url: "https://scaledagileframework.com/wp-content/uploads/2023/01/DevSecOps_Keystone_CI.svg",
+                  },
+                  attachmentMaxWidth: "400px",
                 },
               },
               {
@@ -346,6 +374,11 @@ const App = () => {
                 attributes: {
                   title: "section3",
                   label: "Continuous Deployment",
+                  attachment: {
+                    type: "image",
+                    url: "https://scaledagileframework.com/wp-content/uploads/2023/01/DevSecOps_Keystone_CD.svg",
+                  },
+                  attachmentMaxWidth: "400px",
                 },
               },
               {
@@ -494,6 +527,11 @@ const App = () => {
                 attributes: {
                   title: "section4",
                   label: "Release on Demand",
+                  attachment: {
+                    type: "image",
+                    url: "https://scaledagileframework.com/wp-content/uploads/2023/01/Release_on_Demand_F04-1.svg",
+                  },
+                  attachmentMaxWidth: "400px",
                 },
               },
               {
@@ -688,7 +726,7 @@ const App = () => {
             },
             theme: {
               font: "Roboto",
-              buttonsBgColor: "#2B35EE",
+              buttonsBgColor: buttonColor,
               backgroundColor: "#F2F1F1",
               logo: {
                 src: "https://x-squad.com/_next/static/media/x-squad_dark_logo.0f2fd484.svg",
@@ -746,8 +784,13 @@ const App = () => {
             const jsonDataUserInfo = JSON.stringify(userInfo, null, 2);
 
             saveToFile(jsonDataMain, "form-main-data.json", "application/json");
-            saveToFile(jsonDataUserInfo, "user-info.json", "application/json");
-
+            setTimeout(() => {
+              saveToFile(
+                jsonDataUserInfo,
+                "user-info.json",
+                "application/json"
+              );
+            }, 100);
             setTimeout(() => {
               setIsSubmitting(false);
               completeForm();

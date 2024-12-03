@@ -9,6 +9,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import "./styles.css"; // Assurez-vous d'utiliser ce fichier pour les styles globaux
 
 ChartJS.register(
   RadialLinearScale,
@@ -24,7 +25,7 @@ const RadarChart = ({ data }) => {
     labels: data.map((item) => item.category), // Catégories pour chaque axe
     datasets: [
       {
-        label: "Auto Évalutation X-SQUAD",
+        label: "Auto Évaluation X-SQUAD",
         data: data.map((item) => item.value), // Valeurs pour chaque catégorie
         backgroundColor: "rgba(255, 165, 0, 0.3)", // Couleur orange clair
         borderColor: "rgba(255, 140, 0, 1)", // Couleur orange plus foncé
@@ -38,21 +39,19 @@ const RadarChart = ({ data }) => {
     maintainAspectRatio: false,
     scales: {
       r: {
-        angleLines: { display: true }, // Lignes radiales visibles
-        grid: { color: "rgba(0, 0, 0, 0.1)" }, // Couleur des lignes
-        suggestedMin: 0, // Minimum de l'échelle
-        suggestedMax: 5, // Maximum de l'échelle
+        angleLines: { display: true },
+        grid: { color: "rgba(0, 0, 0, 0.1)" },
+        suggestedMin: 0,
+        suggestedMax: 5,
         ticks: {
-          stepSize: 1, // Incrémentation par 1
+          stepSize: 1,
           display: true,
-          color: "rgba(0, 0, 0, 0.8)", // Couleur des graduations
-          backdropColor: "transparent", // Fond transparent
+          color: "rgba(0, 0, 0, 0.8)",
+          backdropColor: "transparent",
         },
         pointLabels: {
-          color: "rgba(0, 0, 0, 0.8)", // Couleur des labels de catégorie
-          font: {
-            size: 12,
-          },
+          color: "rgba(0, 0, 0, 0.8)",
+          font: { size: 12 },
         },
       },
     },
@@ -60,18 +59,25 @@ const RadarChart = ({ data }) => {
       legend: {
         display: true,
         position: "top",
-        labels: {
-          color: "rgba(0, 0, 0, 0.8)", // Couleur de la légende
-        },
+        labels: { color: "rgba(0, 0, 0, 0.8)" },
       },
     },
   };
 
+  const handleButtonClick = () => {
+    window.location.href = "https://x-squad.com/contact";
+  };
+
   return (
-    <div style={{ width: "100%", height: "500px" }}>
-      {" "}
-      {/* Dimensions ajustées */}
-      <Radar data={radarData} options={options} />
+    <div className="chart-container">
+      <div style={{ width: "100%", height: "500px" }}>
+        <Radar data={radarData} options={options} />
+      </div>
+      <div className="button-container">
+        <button className="custom-button" onClick={handleButtonClick}>
+          Aller plus loin...
+        </button>
+      </div>
     </div>
   );
 };
