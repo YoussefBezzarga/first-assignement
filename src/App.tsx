@@ -10,6 +10,7 @@ import { saveAs } from "file-saver";
 import RadarChart from "./RadarChart";
 import "./styles.css";
 import "./custom-slider-block";
+import "./custom-statement-block";
 
 registerCoreBlocks();
 const App = () => {
@@ -62,7 +63,7 @@ const App = () => {
                 },
               },
               {
-                name: "statement",
+                name: "custom-statement-block",
                 id: "q8tkvlh",
                 attributes: {
                   label: "Continuous Exploration",

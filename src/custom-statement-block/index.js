@@ -1,32 +1,24 @@
-import { registerBlockType } from "@quillforms/blocks";
-import display from "./display";
+import { registerCoreBlocks } from "@quillforms/react-renderer-utils";
+import CustomStatementBlock from "./display";
 
-registerBlockType("custom-statement-block", {
-  title: "Custom Statement",
-  attributes: {
-    text: {
-      type: "string",
+registerCoreBlocks({
+  "custom-statement-block": {
+    name: "custom-statement-block",
+    category: "layout",
+    display: CustomStatementBlock,
+    attributes: {
+      label: {
+        type: "string",
+        default: "",
+      },
+      attachment: {
+        type: "object",
+        default: null,
+      },
+      attachmentMaxWidth: {
+        type: "string",
+        default: "100%",
+      },
     },
-    imageUrl: {
-      type: "string",
-      default: "right",
-    },
-    textAlignment: {
-      type: "string",
-      default: "left",
-    },
-  },
-  display: ({ attributes }) => {
-    const { text, imageUrl } = attributes;
-    return (
-      <div className="custom-statement-block">
-        <div className="custom-statement-text">{text}</div>
-        {imageUrl && (
-          <div className="custom-statement-image">
-            <img src={imageUrl} alt="Statement" />
-          </div>
-        )}
-      </div>
-    );
   },
 });
