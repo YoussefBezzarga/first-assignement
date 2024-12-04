@@ -28,7 +28,9 @@ const App = () => {
     if (answers) {
       const sliderBlockKeys = Object.keys(answers).filter(
         (key) =>
-          answers[key].value !== null && typeof answers[key].value === "number" && answers[key].value > 0
+          answers[key].value !== null &&
+          typeof answers[key].value === "number" &&
+          answers[key].value > 0
       );
       if (sliderBlockKeys.length > 0) {
         setButtonColor("#007BFF");
@@ -63,7 +65,6 @@ const App = () => {
                 name: "statement",
                 id: "q8tkvlh",
                 attributes: {
-                  title: "section1",
                   label: "Continuous Exploration",
                   attachment: {
                     type: "image",
