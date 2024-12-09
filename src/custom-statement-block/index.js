@@ -1,24 +1,20 @@
-import { registerCoreBlocks } from "@quillforms/react-renderer-utils";
-import CustomStatementBlock from "./display";
+import { registerBlockType } from "@quillforms/blocks";
+import CustomStatementDisplay from "./display";
 
-registerCoreBlocks({
-  "custom-statement-block": {
-    name: "custom-statement-block",
-    category: "layout",
-    display: CustomStatementBlock,
-    attributes: {
-      label: {
-        type: "string",
-        default: "",
-      },
-      attachment: {
-        type: "object",
-        default: null,
-      },
-      attachmentMaxWidth: {
-        type: "string",
-        default: "100%",
-      },
+registerBlockType("custom-statement-block", {
+  attributes: {
+    label: {
+      type: "string",
+      default: "",
+    },
+    attachment: {
+      type: "object",
+      default: null,
+    },
+    attachmentMaxWidth: {
+      type: "string",
+      default: "400px",
     },
   },
+  display: CustomStatementDisplay,
 });

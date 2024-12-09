@@ -11,13 +11,13 @@ import RadarChart from "./RadarChart";
 import "./styles.css";
 import "./custom-slider-block";
 import "./custom-statement-block";
+import "./custom-welcome-screen-block"
 
 registerCoreBlocks();
 const App = () => {
   const [chartData, setChartData] = useState(null);
-  const [buttonColor, setButtonColor] = useState("#ccc");
+  // const [buttonColor, setButtonColor] = useState("#ccc");
 
-  const currentBlock = useCurrentBlock();
   const answers = useFormAnswers();
 
   function saveToFile(jsonData, fileName, fileType) {
@@ -25,21 +25,21 @@ const App = () => {
     saveAs(blob, fileName);
   }
 
-  React.useEffect(() => {
-    if (answers) {
-      const sliderBlockKeys = Object.keys(answers).filter(
-        (key) =>
-          answers[key].value !== null &&
-          typeof answers[key].value === "number" &&
-          answers[key].value > 0
-      );
-      if (sliderBlockKeys.length > 0) {
-        setButtonColor("#007BFF");
-      } else {
-        setButtonColor("#ccc");
-      }
-    }
-  }, [answers]);
+  // React.useEffect(() => {
+  //   if (answers) {
+  //     const sliderBlockKeys = Object.keys(answers).filter(
+  //       (key) =>
+  //         answers[key].value !== null &&
+  //         typeof answers[key].value === "number" &&
+  //         answers[key].value > 0
+  //     );
+  //     if (sliderBlockKeys.length > 0) {
+  //       setButtonColor("#007BFF");
+  //     } else {
+  //       setButtonColor("#ccc");
+  //     }
+  //   }
+  // }, [answers]);
   return (
     <div style={{ width: "100%", height: "100vh" }}>
       {chartData ? (
@@ -50,28 +50,34 @@ const App = () => {
           formObj={{
             blocks: [
               {
-                name: "welcome-screen",
+                name: "custom-welcome-screen-block",
                 id: "jg1401r",
                 attributes: {
-                  label: "Welcome",
-                  description: "DevOps level assessment",
-                  attachment: {
-                    type: "image",
-                    url: "https://x-squad.com/_next/static/media/x-squad_dark_logo.0f2fd484.svg",
-                  },
-                  attachmentMaxWidth: "600px",
+                  label: "Welcome to X-SQUAD.",
+                  description: `
+                    Your journey to DevOps excellence starts here!
+                    
+                    Take this quick and comprehensive level assessment to evaluate your organization's DevOps maturity. Discover your strengths, identify areas of improvement, and get actionable insights to accelerate your growth.
+                    
+                    ✨ What to expect?
+                    - A series of targeted questions
+                    - A detailed report with personalized recommendations
+                    
+                    Let's unlock your full potential together. Ready to begin?
+                  `,
                 },
               },
               {
                 name: "custom-statement-block",
-                id: "q8tkvlh",
+                id: "dhrnpq5",
                 attributes: {
+                  title: "statement1",
                   label: "Continuous Exploration",
                   attachment: {
                     type: "image",
                     url: "https://scaledagileframework.com/wp-content/uploads/2023/01/DevSecOps_Keystone_CE.svg",
                   },
-                  attachmentMaxWidth: "400px",
+                  attachmentMaxWidth: "100px",
                 },
               },
               {
@@ -84,7 +90,7 @@ const App = () => {
                   comments: [
                     {
                       range: [0],
-                      // text: "Select a value beetween 1 & 10.",
+                      text: "Select a value beetween 1 & 10.",
                     },
                     {
                       range: [1, 2],
@@ -119,7 +125,7 @@ const App = () => {
                   comments: [
                     {
                       range: [0],
-                      // text: "No experience.",
+                      text: "Select a value beetween 1 & 10.",
                     },
                     {
                       range: [1, 2],
@@ -154,7 +160,7 @@ const App = () => {
                   comments: [
                     {
                       range: [0],
-                      // text: "No experience.",
+                      text: "Select a value beetween 1 & 10.",
                     },
                     {
                       range: [1, 2],
@@ -189,7 +195,7 @@ const App = () => {
                   comments: [
                     {
                       range: [0],
-                      // text: "No experience.",
+                      text: "Select a value beetween 1 & 10.",
                     },
                     {
                       range: [1, 2],
@@ -215,7 +221,7 @@ const App = () => {
                 },
               },
               {
-                name: "statement",
+                name: "custom-statement-block",
                 id: "pg6vren",
                 attributes: {
                   title: "section2",
@@ -237,7 +243,7 @@ const App = () => {
                   comments: [
                     {
                       range: [0],
-                      // text: "No experience.",
+                      text: "Select a value beetween 1 & 10.",
                     },
                     {
                       range: [1, 2],
@@ -272,7 +278,7 @@ const App = () => {
                   comments: [
                     {
                       range: [0],
-                      // text: "No experience.",
+                      text: "Select a value beetween 1 & 10.",
                     },
                     {
                       range: [1, 2],
@@ -307,7 +313,7 @@ const App = () => {
                   comments: [
                     {
                       range: [0],
-                      // text: "No experience.",
+                      text: "Select a value beetween 1 & 10.",
                     },
                     {
                       range: [1, 2],
@@ -342,7 +348,7 @@ const App = () => {
                   comments: [
                     {
                       range: [0],
-                      // text: "No experience.",
+                      text: "Select a value beetween 1 & 10.",
                     },
                     {
                       range: [1, 2],
@@ -368,7 +374,7 @@ const App = () => {
                 },
               },
               {
-                name: "statement",
+                name: "custom-statement-block",
                 id: "zcsglif",
                 attributes: {
                   title: "section3",
@@ -390,7 +396,7 @@ const App = () => {
                   comments: [
                     {
                       range: [0],
-                      // text: "No experience.",
+                      text: "Select a value beetween 1 & 10.",
                     },
                     {
                       range: [1, 2],
@@ -425,7 +431,7 @@ const App = () => {
                   comments: [
                     {
                       range: [0],
-                      // text: "No experience.",
+                      text: "Select a value beetween 1 & 10.",
                     },
                     {
                       range: [1, 2],
@@ -460,7 +466,7 @@ const App = () => {
                   comments: [
                     {
                       range: [0],
-                      // text: "No experience.",
+                      text: "Select a value beetween 1 & 10.",
                     },
                     {
                       range: [1, 2],
@@ -495,7 +501,7 @@ const App = () => {
                   comments: [
                     {
                       range: [0],
-                      // text: "No experience.",
+                      text: "Select a value beetween 1 & 10.",
                     },
                     {
                       range: [1, 2],
@@ -521,7 +527,7 @@ const App = () => {
                 },
               },
               {
-                name: "statement",
+                name: "custom-statement-block",
                 id: "jtwe62b",
                 attributes: {
                   title: "section4",
@@ -543,7 +549,7 @@ const App = () => {
                   comments: [
                     {
                       range: [0],
-                      // text: "No experience.",
+                      text: "Select a value beetween 1 & 10.",
                     },
                     {
                       range: [1, 2],
@@ -578,7 +584,7 @@ const App = () => {
                   comments: [
                     {
                       range: [0],
-                      // text: "No experience.",
+                      text: "Select a value beetween 1 & 10.",
                     },
                     {
                       range: [1, 2],
@@ -613,7 +619,7 @@ const App = () => {
                   comments: [
                     {
                       range: [0],
-                      // text: "No experience.",
+                      text: "Select a value beetween 1 & 10.",
                     },
                     {
                       range: [1, 2],
@@ -648,7 +654,7 @@ const App = () => {
                   comments: [
                     {
                       range: [0],
-                      // text: "No experience.",
+                      text: "Select a value beetween 1 & 10.",
                     },
                     {
                       range: [1, 2],
@@ -725,7 +731,7 @@ const App = () => {
             },
             theme: {
               font: "Roboto",
-              buttonsBgColor: buttonColor,
+              buttonsBgColor: "#2B35EE",
               backgroundColor: "#F2F1F1",
               logo: {
                 src: "https://x-squad.com/_next/static/media/x-squad_dark_logo.0f2fd484.svg",
@@ -766,14 +772,13 @@ const App = () => {
 
             Object.keys(data.answers).forEach((key) => {
               if (questionMap[key]) {
-                // Questions principales
                 mainQuestions.push({
                   category: questionMap[key],
                   value: data.answers[key].value || 0,
                 });
-              } else {
-                // Informations utilisateur
-                userInfo[key] = data.answers[key].value || data.answers[key];
+              } else if (userAnswers[key]) {
+                userInfo[userAnswers[key]] =
+                  data.answers[key].value || data.answers[key];
               }
             });
 

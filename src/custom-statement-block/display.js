@@ -1,23 +1,58 @@
+import { useTheme } from "@quillforms/renderer-core";
 import React from "react";
+import { css } from "emotion";
 
-const CustomStatementBlock = ({ attributes }) => {
-  console.log("Attributes: ", attributes); // Ajout pour vérifier les attributs
-  
+const CustomStatementDisplay = (props) => {
+  const { attributes } = props;
   const { label, attachment, attachmentMaxWidth } = attributes;
-
-  if (!label && !attachment) {
-    return <div>Aucun contenu disponible pour ce bloc.</div>;
-  }
+  const theme = useTheme();
 
   return (
-    <div className="custom-statement-block">
-      {label && <div className="statement-text">{label}</div>}
-      {attachment && attachment.url && (
-        <div className="statement-image">
+    <div
+      className={css`
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: 100vh; 
+        padding: 20px;
+      `}
+    >
+      {label && (
+        <div
+          className={css`
+            flex: 1;
+            text-align: center; 
+            padding: 0 20px;
+          `}
+        >
+          <p
+            className={css`
+              font-size: 20px;
+              color: ${theme.questionsColor};
+            `}
+          >
+            {label}
+          </p>
+        </div>
+      )}
+
+      {attachment && attachment.type === "image" && (
+        <div
+          className={css`
+            flex: 1;
+            display: flex;
+            justify-content: center;
+          `}
+        >
           <img
             src={attachment.url}
             alt="Statement attachment"
-            style={{ maxWidth: attachmentMaxWidth }}
+            className={css`
+              max-width: ${attachmentMaxWidth || "400px"};
+              height: auto;
+              display: block;
+            `}
           />
         </div>
       )}
@@ -25,4 +60,5 @@ const CustomStatementBlock = ({ attributes }) => {
   );
 };
 
-export default CustomStatementBlock;
+
+export default CustomStatementDisplay;

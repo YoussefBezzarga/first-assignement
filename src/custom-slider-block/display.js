@@ -13,7 +13,7 @@ const CustomSliderDisplay = (props) => {
     setVal,
   } = props;
 
-  const { required, min, max, step, comments, label } = attributes;
+  const { required, min, max, step, comments } = attributes;
   const [dynamicComment, setDynamicComment] = useState("");
   const messages = useMessages();
   const theme = useTheme();
@@ -99,7 +99,6 @@ const CustomSliderDisplay = (props) => {
           {val || min}
         </span>
       </div>
-      {/* Déplacez les commentaires ici */}
       <div
         className={css`
           margin-top: 20px;

@@ -52,36 +52,3 @@ body {
 .custom-button:focus {
   outline: 2px solid #94a3ff; 
 }
-
-.custom-statement-block {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  margin: 20px 0;
-  background-color: #ffffff; /* Couleur de fond optionnelle */
-  border-radius: 8px; /* Coins arrondis */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre optionnelle */
-}
-
-.statement-text {
-  flex: 1; /* Prend toute la place restante */
-  text-align: center; /* Centre le texte */
-  font-size: 1.2rem; /* Taille du texte */
-  font-weight: bold; /* Texte en gras */
-  color: #333; /* Couleur du texte */
-  padding-right: 20px; /* Espacement à droite */
-}
-
-.statement-image {
-  flex: 1; /* Prend toute la place restante */
-  display: flex;
-  justify-content: center; /* Centre l'image horizontalement */
-  align-items: center; /* Centre l'image verticalement */
-}
-
-.statement-image img {
-  max-width: 100%; /* Limite la taille de l'image */
-  height: auto; /* Conserve les proportions */
-  border-radius: 8px; /* Coins arrondis optionnels */
-}
