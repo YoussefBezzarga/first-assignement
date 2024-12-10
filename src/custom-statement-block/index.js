@@ -1,7 +1,7 @@
 import { registerBlockType } from "@quillforms/blocks";
 import CustomStatementDisplay from "./display";
 
-registerBlockType("custom-statement-block", {
+registerBlockType("statement", {
   attributes: {
     label: {
       type: "string",

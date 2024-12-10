@@ -1,7 +1,7 @@
 import { registerBlockType } from "@quillforms/blocks";
 import WelcomeScreenBlock from "./display";
 
-registerBlockType("custom-welcome-screen-block", {
+registerBlockType("welcome-screen", {
   attributes: {
     label: {
       type: "string",
@@ -12,5 +12,5 @@ registerBlockType("custom-welcome-screen-block", {
       default: "",
     },
   },
-  display: WelcomeScreenBlock
+  display: WelcomeScreenBlock,
 });

@@ -11,7 +11,7 @@ import RadarChart from "./RadarChart";
 import "./styles.css";
 import "./custom-slider-block";
 import "./custom-statement-block";
-import "./custom-welcome-screen-block"
+import "./custom-welcome-screen-block";
 
 registerCoreBlocks();
 const App = () => {
@@ -49,26 +49,26 @@ const App = () => {
           formId={1}
           formObj={{
             blocks: [
+              // {
+              //   name: "welcome-screen",
+              //   id: "jg1401r",
+              //   attributes: {
+              //     label: "Welcome to X-SQUAD.",
+              //     description: `
+              //       Your journey to DevOps excellence starts here!
+
+              //       Take this quick and comprehensive level assessment to evaluate your organization's DevOps maturity. Discover your strengths, identify areas of improvement, and get actionable insights to accelerate your growth.
+
+              //       ✨ What to expect?
+              //       - A series of targeted questions
+              //       - A detailed report with personalized recommendations
+
+              //       Let's unlock your full potential together. Ready to begin?
+              //     `,
+              //   },
+              // },
               {
-                name: "custom-welcome-screen-block",
-                id: "jg1401r",
-                attributes: {
-                  label: "Welcome to X-SQUAD.",
-                  description: `
-                    Your journey to DevOps excellence starts here!
-                    
-                    Take this quick and comprehensive level assessment to evaluate your organization's DevOps maturity. Discover your strengths, identify areas of improvement, and get actionable insights to accelerate your growth.
-                    
-                    ✨ What to expect?
-                    - A series of targeted questions
-                    - A detailed report with personalized recommendations
-                    
-                    Let's unlock your full potential together. Ready to begin?
-                  `,
-                },
-              },
-              {
-                name: "custom-statement-block",
+                name: "statement",
                 id: "dhrnpq5",
                 attributes: {
                   title: "statement1",

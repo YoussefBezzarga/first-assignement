@@ -14,7 +14,7 @@ const CustomStatementDisplay = (props) => {
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        height: 100vh; 
+        height: 100vh;
         padding: 20px;
       `}
     >
@@ -22,7 +22,7 @@ const CustomStatementDisplay = (props) => {
         <div
           className={css`
             flex: 1;
-            text-align: center; 
+            text-align: center;
             padding: 0 20px;
           `}
         >
@@ -59,6 +59,5 @@ const CustomStatementDisplay = (props) => {
     </div>
   );
 };
-
 
 export default CustomStatementDisplay;

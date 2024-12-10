@@ -51,21 +51,6 @@ const WelcomeScreenBlock = (props) => {
         >
           {description}
         </p>
-        <button
-          onClick={() => props.submit()} // Appel de la méthode pour continuer
-          className={css`
-            background-color: ${colors.primary || "#007BFF"}; /* Valeur par défaut */
-            color: #ffffff;
-            border: none;
-            border-radius: 8px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-          `}
-        >
-          Let's start!
-        </button>
       </div>
     </div>
   );
