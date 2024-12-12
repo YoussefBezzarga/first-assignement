@@ -49,24 +49,24 @@ const App = () => {
           formId={1}
           formObj={{
             blocks: [
-              // {
-              //   name: "welcome-screen",
-              //   id: "jg1401r",
-              //   attributes: {
-              //     label: "Welcome to X-SQUAD.",
-              //     description: `
-              //       Your journey to DevOps excellence starts here!
+              {
+                name: "welcome-screen",
+                id: "jg1401r",
+                attributes: {
+                  label: "Welcome to X-SQUAD.",
+                  description: `
+                    Your journey to DevOps excellence starts here!
 
-              //       Take this quick and comprehensive level assessment to evaluate your organization's DevOps maturity. Discover your strengths, identify areas of improvement, and get actionable insights to accelerate your growth.
+                    Take this quick and comprehensive level assessment to evaluate your organization's DevOps maturity. Discover your strengths, identify areas of improvement, and get actionable insights to accelerate your growth.
 
-              //       ✨ What to expect?
-              //       - A series of targeted questions
-              //       - A detailed report with personalized recommendations
+                    ✨ What to expect?
+                    - A series of targeted questions
+                    - A detailed report with personalized recommendations
 
-              //       Let's unlock your full potential together. Ready to begin?
-              //     `,
-              //   },
-              // },
+                    Let's unlock your full potential together. Ready to begin?
+                  `,
+                },
+              },
               {
                 name: "statement",
                 id: "dhrnpq5",
