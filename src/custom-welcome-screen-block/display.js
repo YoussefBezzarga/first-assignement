@@ -1,14 +1,10 @@
 import React from "react";
-import { useCurrentBlock } from "@quillforms/renderer-core";
 import { css } from "emotion";
+import { useRendererStoreActions } from "@quillforms/renderer-core";
 
-const WelcomeScreenBlock = (props) => {
-  const { attributes } = props;
-  const { label, description } = attributes;
-  const currentBlock = useCurrentBlock();
+const WelcomeScreenBlock = () => {
+  const { goToBlock } = useRendererStoreActions();
 
-  const { goToNextBlock } = useCurrentBlock();
-  
   return (
     <div
       className={css`
@@ -23,14 +19,15 @@ const WelcomeScreenBlock = (props) => {
     >
       <div
         className={css`
-          background:
-          linear-gradient(124.98deg, #FFFCF11A 29.07%, #C2A0F11A 87.88%);          
+          background: linear-gradient(
+            124.98deg,
+            #fffcf11a 29.07%,
+            #c2a0f11a 87.88%
+          );
           width: 528px;
-          box-shadow: 
-          0px 12px 24px 0px #8E8DA83D, 
-          0px 0px 13px 0px #8E8DA81A;
+          box-shadow: 0px 12px 24px 0px #8e8da83d, 0px 0px 13px 0px #8e8da81a;
           border-radius: 12px;
-          border: 2px solid #FFFFFF;
+          border: 2px solid #ffffff;
           padding: 24px;
           text-align: left;
         `}
@@ -97,7 +94,7 @@ const WelcomeScreenBlock = (props) => {
           `}
         >
           <li>
-          🌟 <b>What to expect ?</b>
+            🌟 <b>What to expect ?</b>
           </li>
           <li>• A series of targeted questions</li>
           <li>• A detailed report with personalized recommendations</li>
@@ -116,6 +113,7 @@ const WelcomeScreenBlock = (props) => {
           Let’s unlock your full potential together. Ready to begin ?
         </p>
         <button
+          onClick={() => goToBlock("dhrnpq5")}
           style={{
             backgroundColor: "#2B35EE",
             color: "#ffffff",
@@ -126,7 +124,6 @@ const WelcomeScreenBlock = (props) => {
             cursor: "pointer",
             transition: "background-color 0.3s ease, transform 0.2s ease",
           }}
-          onClick={goToNextBlock} 
         >
           Let's start!
         </button>
