@@ -1,16 +1,5 @@
-/**
- * QuillForms Dependencies
- */
 import { useTheme, useMessages } from "@quillforms/renderer-core";
-
-/**
- * React Dependencies
- */
 import { useState, useEffect } from "react";
-
-/**
- * External Dependencies
- */
 import { css } from "emotion";
 
 const CustomSliderDisplay = (props) => {
@@ -24,13 +13,16 @@ const CustomSliderDisplay = (props) => {
     setVal,
   } = props;
 
-  const { required, min, max, step, comments, label } = attributes;
+  const { required, min, max, step, comments } = attributes;
   const [dynamicComment, setDynamicComment] = useState("");
   const messages = useMessages();
   const theme = useTheme();
 
   const validate = (value) => {
-    if (required && (value === null || value === undefined)) {
+    if (value === 0) {
+      setIsValid(false);
+      setValidationErr(null);
+    } else if (required && (value === null || value === undefined)) {
       setIsValid(false);
       setValidationErr(messages["label.errorAlert.required"]);
     } else {
@@ -40,19 +32,21 @@ const CustomSliderDisplay = (props) => {
   };
 
   useEffect(() => {
-    validate(val);
+    validate(val || min);
+
+    const initialVal = val || min;
     if (comments && Array.isArray(comments)) {
       const comment = comments.find(({ range }) =>
-        range.includes(parseInt(val, 10))
+        range.includes(parseInt(initialVal, 10))
       );
       setDynamicComment(comment?.text || "");
     }
-  }, [val, comments]);
+  }, [val, comments, min]);
 
   return (
     <div
       className={css`
-        padding: 20px;
+        padding: 10px;
       `}
     >
       <label
@@ -78,26 +72,28 @@ const CustomSliderDisplay = (props) => {
           step={step}
           value={val || min}
           onChange={(e) => {
-            setVal(e.target.value);
+            const newValue = parseInt(e.target.value, 10);
+            setVal(newValue);
             setIsAnswered(true);
+            validate(newValue);
           }}
           className={css`
             width: 100%;
-            margin-bottom: 10px;
+            margin-bottom: 1%;
           `}
         />
         <span
           className={css`
             position: absolute;
-            top: -40px; /* Adjusted to create more space */
+            top: -40px;
             left: ${((val - min) / (max - min)) * 100}%;
             transform: translateX(-50%);
-            background: ${theme.buttonsBgColor};
+            background: ${"#009ACD"};
             color: ${theme.buttonsFontColor};
-            padding: 6px 10px; /* Increased padding for better visibility */
+            padding: 6px 10px;
             border-radius: 4px;
-            font-size: 14px;
-            white-space: nowrap; /* Prevents text wrapping */
+            font-size: 15px;
+            white-space: nowrap;
           `}
         >
           {val || min}
@@ -105,12 +101,29 @@ const CustomSliderDisplay = (props) => {
       </div>
       <div
         className={css`
+          margin-top: 20px;
           font-size: 14px;
-          color: ${theme.answersColor};
+          color: ${"#020202"};
+          text-align: center;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         `}
       >
-        {dynamicComment}
+        {dynamicComment || " "} {}
       </div>
+      {setValidationErr && (
+        <div
+          className={css`
+            margin-top: 10px;
+            color: red;
+            font-size: 14px;
+          `}
+        >
+          {setValidationErr}
+        </div>
+      )}
     </div>
   );
 };

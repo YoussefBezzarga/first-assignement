@@ -26,7 +26,7 @@ registerBlockType("custom-slider-block", {
     comments: {
       type: "array",
       default: [
-        { range: [0], text: "Not rated yet." },
+        { range: [0], text: "No experience" },
         { range: [1, 2], text: "Poor experience." },
         { range: [3, 4], text: "Below average." },
         { range: [5, 6], text: "Average." },
@@ -36,4 +36,11 @@ registerBlockType("custom-slider-block", {
     },
   },
   display,
+  validate: (blockAttributes, blockState) => {
+    const value = blockState;
+    if (value === 0) {
+      return "Error";
+    }
+    return null;
+  },
 });
